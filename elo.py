@@ -2,6 +2,7 @@ import numpy as np
 import xlrd
 import pandas as  pd
 import math
+import matplotlib.pyplot as plt
 
 num_teams = 20
 s_win = 1
@@ -48,11 +49,10 @@ def elo_rating(teams, year):
         elif scorej > scorei:
             teams[teami] += K * (0 - mu(teams[teamj],teams[teami]))
             teams[teamj] += K * (1 - mu(teams[teami],teams[teamj]))
-    # print(teams)
     show_elo(teams)
+    return teams
 
 def show_elo(teams):
-    print(teams)
     li_teams = []
     elo_teams = []
     for team in teams:
@@ -61,6 +61,15 @@ def show_elo(teams):
     elo_df = pd.DataFrame({"Team": li_teams, "Elo Rating": elo_teams})
     elo_df.sort_values(by=['Elo Rating'], inplace=True, ascending=False)
     print(elo_df.to_string(index=False))
+    for i in range(len(li_teams)):
+        x = 2
+        y = elo_teams[i]
+        plt.scatter(x, y, marker='_', color='black')
+        plt.text(2.001, y, li_teams[i], fontsize=6)
+        # plt.annotate('(%s, %s)' % xy, xy=xy, textcoords='data')
+        # plt.annotate(xy=[1,1], )
+        # plt.annotate(li_teams[i],xy=[2.001,elo_teams[i]])
+    plt.show()
 
 def main():
     pop_teams(2016)

@@ -66,13 +66,14 @@ def calc_rating(team_differential):
     rating_df = pd.DataFrame({"Team": teams, "Massey Rating": li_ratings})
     rating_df.sort_values(by=['Massey Rating'], inplace=True, ascending=False)
     print(rating_df.to_string(index=False))
+    return teams, li_ratings
 
 def calc_d_o():
     pass
 
 def main():
     # Input a year between 1995 and 2018
-    pt_differential(2018)
+    pt_differential(2016)
 
 if __name__ == "__main__":
     main()
