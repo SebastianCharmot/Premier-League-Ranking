@@ -134,7 +134,7 @@ def premier(year):
 ''' Parallel Plot'''
 
 def main():
-    year = 2016
+    year = 2014
     elo_rating = elo(year)
     massey_rating = massey(year)
     premier_rating = premier(year)
